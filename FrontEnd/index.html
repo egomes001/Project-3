@@ -13,7 +13,7 @@
 	<script type="module" src="works.js" defer></script>
 </head>
 <body>
-	<div class="edition hidden">
+	<div class="edition top hidden">
 		<i class="fa-solid fa-pen-to-square"></i>
 		<p>Mode édition</p>
 	</div>
@@ -22,10 +22,10 @@
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
-				<li><a href="index.html">projets</a></li>
+				<li><a href="#">projets</a></li>
 				<li><a href="#contact">contact</a></li>
-				<li><a href="login.html" class="login">login</a></li>
-				<li><a class="login hidden">logout</a></li>
+				<li class="login edition"><a href="login.html">login</a></li>
+				<li class="logout edition hidden"><a href="#">logout</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -43,8 +43,11 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
-			<div class="filters-list">
+			<div id="mesprojets">
+				<h2>Mes Projets</h2>
+				<a class="edition hidden" href="#" onclick=""><i class="fa-solid fa-pen-to-square"></i>modifier</a>
+			</div>
+			<div class="filters-list edition">
 				<button class="filters filtrer-tous">Tous</button>
 				<button class="filters filtrer-objets">Objets</button>
 				<button class="filters filtrer-apparts">Appartements</button>

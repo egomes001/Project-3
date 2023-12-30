@@ -27,7 +27,7 @@ export function matchLogin(){
                 }
                 return reponseLogin.json();
             }).then(reponseLogin => {
-                window.sessionStorage.setItem("log", reponseLogin.token);
+                window.localStorage.setItem("log", reponseLogin.token);
                 window.location.href = 'http://127.0.0.1:5500/FrontEnd/index.html';
         });
         

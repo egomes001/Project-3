@@ -1,13 +1,11 @@
 const reponse = await fetch('http://localhost:5678/api/works');
 const travaux = await reponse.json();
 
-window.addEventListener("load", () => {
-    const token = window.sessionStorage.getItem("log");
-    console.log(token);
-    if (token !== null){
-        document.querySelector(".edition").classList.toggle("hidden");
-    }
-});
+let token = window.localStorage.getItem("log");
+let editionHeader = document.querySelector(".edition");
+if (token !== null & editionHeader.classList.contains("hidden")){
+    editionMode();
+}
 
 
 function clearList() {
@@ -73,3 +71,16 @@ boutonFiltrerHotels.addEventListener("click", () => {
     workList(projetsFiltres);
 });
 
+const boutonLogout = document.querySelector(".logout");
+
+boutonLogout.addEventListener("click", () => {
+    window.localStorage.removeItem("log");
+    editionMode();
+});
+
+function editionMode(){
+    const elementsEdition = document.querySelectorAll(".edition");
+    elementsEdition.forEach((items) =>{
+        items.classList.toggle("hidden");
+    });
+}

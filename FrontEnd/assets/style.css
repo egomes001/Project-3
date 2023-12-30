@@ -55,7 +55,7 @@ body {
 	margin:auto;
 	font-size: 14px;
 }
-.edition{
+.top{
 	display: flex;
 	color: white;
 	background-color: black;
@@ -64,13 +64,11 @@ body {
 	justify-content: center;
 }
 
-.edition p{
+.top p{
 	margin: 0px 15px;
 }
 
-.hidden{
-	display: none;
-}
+
 
 header {
 	display: flex;
@@ -144,9 +142,18 @@ nav li a:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
-#portfolio h2 {
+
+#mesprojets {
 	text-align: center;
 	margin-bottom: 1em;
+}
+
+#mesprojets a{
+	position: relative;
+	bottom: 20px;
+	left: 150px;
+	text-decoration: none;
+	color: black;
 }
 
 .filters-list{
@@ -262,3 +269,6 @@ footer nav ul {
 	margin: 2em
 }
 
+.hidden{
+	display: none;
+}
