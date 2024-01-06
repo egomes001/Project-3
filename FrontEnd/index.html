@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="https://kit.fontawesome.com/d4b27baf7d.js" crossorigin="anonymous"></script>
 	<script type="module" src="works.js" defer></script>
+	<script type="module" src="modal.js" defer></script>
 </head>
 <body>
 	<div class="edition top hidden">
@@ -45,7 +46,18 @@
 		<section id="portfolio">
 			<div id="mesprojets">
 				<h2>Mes Projets</h2>
-				<a class="edition hidden" href="#" onclick=""><i class="fa-solid fa-pen-to-square"></i>modifier</a>
+				<a class="edition hidden" id="modifier" href="#modal" onclick=""><i class="fa-solid fa-pen-to-square"></i>modifier</a>
+				<aside id="modal" class="modal" style="display: none;">
+					<div class="modal-wrapper js_modal_stop">
+						<a href="#" class="modal_close"><i></i>x</a>
+						<h2 id="title_modal">Galerie photo</h2>
+						<section id="contener_modal">
+						
+						</section>
+						<hr>
+						<button id="add_picture">Ajouter une photo</button>
+					</div>
+				</aside>
 			</div>
 			<div class="filters-list edition">
 				<button class="filters filtrer-tous">Tous</button>
