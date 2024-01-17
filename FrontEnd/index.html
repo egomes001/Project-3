@@ -48,15 +48,44 @@
 				<h2>Mes Projets</h2>
 				<a class="edition hidden" id="modifier" href="#modal" onclick=""><i class="fa-solid fa-pen-to-square"></i>modifier</a>
 				<aside id="modal" class="modal" style="display: none;">
-					<div class="modal-wrapper js_modal_stop">
-						<a href="#" class="modal_close"><i></i>x</a>
-						<h2 id="title_modal">Galerie photo</h2>
-						<section id="contener_modal">
-						
-						</section>
-						<hr>
-						<button id="add_picture">Ajouter une photo</button>
-					</div>
+					<section class="modal-wrapper js_modal_stop">
+						<div class="contener_buttons">
+							<a href="#" id="modal_close"><i class="fa-solid fa-xmark"></i></a>
+							<a href="#" id="modal_back" class="windows_modal hidden"><i class="fa-solid fa-arrow-left"></i></a>
+						</div>
+						<div class="windows_modal">
+							<h2 class="title_modal">Galerie photo</h2>	
+							<div id="contener_modal">
+							</div>
+							<hr>
+							<button href="#" id="add_picture">Ajouter une photo</button>
+						</div>
+						<div id="add_project_modal" class="windows_modal hidden">
+							<h2 class="title_modal">Ajout photo</h2>	
+							<form id="formAdd" action="#" method="post">
+								<div class="image-preview-container">
+									<div class="preview">
+										<img id="preview-selected-image">
+									</div>
+									<i class="fa-regular fa-image hide_photo"></i>
+									<label class="hide_photo" for="upload_file">+ Ajouter photo</label>
+									<input type="file" name="image" id="upload_file" accept="image/*" required>
+									<p class="hide_photo">jpg, png : 4mo max</p>
+								</div>
+								<label for="title">Titre</label>
+								<input type="text" name="title" id="title" required>
+								<label for="category">Catégorie</label>
+								<select name="category" id="category">
+									<option value="1">Objets</option>
+									<option value="2">Appartements</option>
+									<option value="3">Hotels & restaurants</option>
+								</select>
+								<hr>
+								<input type="submit" value="Valider">
+							</form>
+							
+						</div>
+					</section>
 				</aside>
 			</div>
 			<div class="filters-list edition">

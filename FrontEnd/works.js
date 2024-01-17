@@ -1,16 +1,28 @@
 let reponse = await fetch('http://localhost:5678/api/works');
 let travaux = await reponse.json();
+const reponseCat = await fetch(`http://localhost:5678/api/categories`);
+const categories = await reponseCat.json();
 
-async function getWorks(){
-    reponse = await fetch('http://localhost:5678/api/works');
-    return await reponse.json();
+console.log(categories);
+console.log(travaux);
+
+function pushWorks(projet){
+    travaux.push(projet);
+}
+
+function deleteWorks(id){
+    travaux = travaux.filtrer((work) => {
+        return work.id !== id;
+    });
 }
 
 window.localStorage.removeItem("pieces");
-let token = window.localStorage.getItem("log");
+const userID = window.localStorage.getItem("id");
+const token = window.localStorage.getItem("token");
+console.log(token)
 let editionHeader = document.querySelector(".edition");
 if (token !== null & editionHeader.classList.contains("hidden")){
-    editionMode();
+    editionMode(".edition");
 }
 
 function clearList(conteneur) {
@@ -58,12 +70,35 @@ async function deletework(id) {
                 headers: { accept : "*/*", authorization : `Bearer ${token}` }
 }).then(reponseDelete => {
     if(reponseDelete.ok){
-        workList(getWorks(),"modal");
-        workList(getWorks(),"gallery");
+        deleteWorks(id);
+        workList(travaux,"modal");
+        workList(travaux,"gallery");
     }
 });
 }
 
+async function addwork() {
+    const formulairePost = document.querySelector("#add_project_modal form");
+    formulairePost.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formData = new FormData(formulairePost);
+        await fetch(`http://localhost:5678/api/works`, {
+                method: "POST",
+                headers: {
+                    authorization : `Bearer ${token}`
+                },
+                body: formData
+        }).then(reponsePost => {
+            if(reponsePost.ok){
+                pushWorks(reponsePost)
+                workList(travaux,"modal");
+                workList(travaux,"gallery");
+            }
+        });
+    });
+}
+
+addwork();
 const boutonFiltrerTous = document.querySelector(".filtrer-tous");
 
 boutonFiltrerTous.addEventListener("click", () => {
@@ -104,12 +139,13 @@ boutonFiltrerHotels.addEventListener("click", () => {
 const boutonLogout = document.querySelector(".logout");
 
 boutonLogout.addEventListener("click", () => {
-    window.localStorage.removeItem("log");
-    editionMode();
+    window.localStorage.removeItem("id");
+    window.localStorage.removeItem("token");
+    editionMode(".edition");
 });
 
-function editionMode(){
-    const elementsEdition = document.querySelectorAll(".edition");
+function editionMode(elements){
+    const elementsEdition = document.querySelectorAll(elements);
     elementsEdition.forEach((items) =>{
         items.classList.toggle("hidden");
     });
@@ -121,3 +157,36 @@ boutonModifier.addEventListener("click", () => {
     clearList(document.getElementById("contener_modal"))
     workList(travaux,"modal");
 });
+
+const boutonAdd = document.getElementById("add_picture");
+
+boutonAdd.addEventListener("click", () => {
+    editionMode(".windows_modal");
+});
+
+const boutonBack = document.getElementById("modal_back");
+
+boutonBack.addEventListener("click", () => {
+    editionMode(".windows_modal");
+});
+
+const boutonPreview = document.getElementById("upload_file");
+
+boutonPreview.addEventListener("change", (e) => {
+    e.preventDefault();
+    previewImage(e);
+});
+
+function previewImage(event){
+
+    const imageFiles = event.target.files;
+    const imageFilesLength = imageFiles.length;
+    if (imageFilesLength > 0) {
+        const imageSrc = URL.createObjectURL(imageFiles[0]);
+        const imagePreview = document.querySelector("#preview-selected-image");
+        console.log(imagePreview.src);
+        document.querySelectorAll(".hide_photo").forEach(hide => hide.style.display = "none")
+        imagePreview.src = imageSrc;
+        imagePreview.style.display = "flex";
+    }
+};

@@ -5,7 +5,7 @@ const openModal = function (e) {
     modal = document.querySelector(e.target.getAttribute('href'));
     modal.style.display = null;
     modal.addEventListener("click", closeModal);
-    modal.querySelector(".modal_close").addEventListener("click", closeModal);
+    modal.querySelector("#modal_close").addEventListener("click", closeModal);
     modal.querySelector(".js_modal_stop").addEventListener("click", stopPropagation);
 }
 
@@ -24,5 +24,4 @@ const stopPropagation = function (e) {
 
 document.querySelectorAll("#modifier").forEach(a => {
     a.addEventListener("click", openModal);
-
 });
