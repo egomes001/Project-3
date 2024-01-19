@@ -24,11 +24,14 @@ function matchLogin(){
             window.localStorage.setItem("token", reponseLogin.token);
             window.location.href = 'http://127.0.0.1:5500/index.html';
         }).catch(error => {
-            const messageLogin = document.createElement("p");
-            messageLogin.classList.add("erreur");
-            messageLogin.innerHTML = error;
-            document.querySelector("#login form").appendChild(messageLogin);
-        })
+            let texteErreur = document.querySelector("#login .erreur");
+            if(texteErreur === null){
+                const messageLogin = document.createElement("p");
+                messageLogin.classList.add("erreur");
+                messageLogin.innerHTML = error;
+                document.querySelector("#login form").appendChild(messageLogin);
+            }            
+        });
         
         
         
