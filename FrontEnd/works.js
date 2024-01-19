@@ -1,7 +1,6 @@
 let reponse = await fetch('http://localhost:5678/api/works');
 let travaux = await reponse.json();
 const objectCategories = await fetch(`http://localhost:5678/api/categories`).then(objectCategories => objectCategories.json());
-
 const userID = window.localStorage.getItem("id");
 const token = window.localStorage.getItem("token");
 
@@ -27,7 +26,9 @@ function init(){
     const boutonFiltrerObjets = document.querySelector(".filtrer-objets");
     boutonFiltrerObjets.addEventListener("click", () => {
         const projetsFiltres = travaux.filter((work) => {
-            return work.category.name === "Objets" || work.categoryId === "1";
+            if(work.categoryId === 1 || work.categoryId === "1"){
+                return work;
+            }
         });
         clearList(document.querySelector(".gallery"));
         workList(projetsFiltres,"gallery");
@@ -36,7 +37,9 @@ function init(){
     const boutonFiltrerApparts = document.querySelector(".filtrer-appart");
     boutonFiltrerApparts.addEventListener("click", () => {
         const projetsFiltres = travaux.filter((work) => {
-            return work.category.name === "Appartements" || work.categoryId === "2";
+            if(work.categoryId === 2 || work.categoryId === "2"){
+                return work;
+            }
         });
         clearList(document.querySelector(".gallery"));
         workList(projetsFiltres,"gallery");
@@ -45,7 +48,9 @@ function init(){
     const boutonFiltrerHotels = document.querySelector(".filtrer-hotels");
     boutonFiltrerHotels.addEventListener("click", () => {
         const projetsFiltres = travaux.filter((work) => {
-            return work.category.name === "Hotels & restaurants" || work.categoryId === "3";
+            if(work.categoryId === 3 || work.categoryId === "3"){
+                return work;
+            }
         });
         clearList(document.querySelector(".gallery"));
         workList(projetsFiltres,"gallery");
