@@ -1,7 +1,6 @@
 let reponse = await fetch('http://localhost:5678/api/works');
 let travaux = await reponse.json();
 const objectCategories = await fetch(`http://localhost:5678/api/categories`).then(objectCategories => objectCategories.json());
-console.log(objectCategories);
 
 const userID = window.localStorage.getItem("id");
 const token = window.localStorage.getItem("token");
@@ -77,7 +76,6 @@ function init(){
         editionMode(".windows_modal");
     });
 
-    /***** PREVISUALISATION IMAGE UPLOAD *****/
 
     const boutonPreview = document.getElementById("upload_file");
     boutonPreview.addEventListener("change", (e) => {
@@ -110,7 +108,6 @@ function createButtons(){
     objectCategories.forEach((items) =>{
         categories.push(items.name);
     });
-    console.log(categories);
     categories.forEach((name) =>{
         createButton(name);
     });
@@ -220,6 +217,8 @@ function deleteWorks(id){
 }
 
 
+/***** PREVISUALISATION IMAGE UPLOAD *****/
+
 function previewImage(event){
 
     const imageFiles = event.target.files;
@@ -232,6 +231,8 @@ function previewImage(event){
         imagePreview.style.display = "flex";
     }
 };
+
+/***** RESET UPLOAD FORM *****/
 
 function resetForm(){
     const imagePreview = document.querySelector("#preview-selected-image");
